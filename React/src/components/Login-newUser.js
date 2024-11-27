@@ -18,7 +18,7 @@ const LoginNewUser = () => {
       
     return (
         <div style={{ marginTop: '60px' }}>
-             <h1 style={{ textAlign: 'center', color: 'blue',fontFamily: 'Cooper Black' }}>To create an account</h1>
+             <h1 style={{ textAlign: 'center', color: 'blue',fontFamily: 'Cooper Black',fontSize:'80px' }}>To create an account</h1>
     <Box
       component="form"
       sx={{ display: 'flex',
