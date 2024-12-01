@@ -6,10 +6,10 @@ import Stack from '@mui/material/Stack';
 import { useNavigate } from 'react-router-dom';
 
 
-const Update = () => {
+const UpdateRevenue = () => {
     const navigate = useNavigate();
     const handleSaveClick = () => {
-        navigate('/tracking');
+        navigate('/remarks');
       };
     return(
         <div>
@@ -25,7 +25,7 @@ const Update = () => {
   noValidate
   autoComplete="off"
 >
-  <TextField id="outlined-basic" label="Expense type" variant="outlined" />
+  <TextField id="outlined-basic" label="Revenue type" variant="outlined" />
   <br></br>
   <TextField id="outlined-basic" label="Date" variant="outlined" />
   <br></br>
@@ -41,4 +41,4 @@ const Update = () => {
         </div>
     );
 }
-export default Update;
+export default UpdateRevenue;

@@ -12,15 +12,22 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { Link } from 'react-router-dom';
-import Update from './Update';
+import { useNavigate } from 'react-router-dom';
 
 const Navigation = () => {
     const [open, setOpen] = React.useState(false);
     const [anchor, setAnchor] = React.useState('left');
+    const navigate = useNavigate();
+
 
     const toggleDrawer = (newOpen, newAnchor) => () => {
       setOpen(newOpen);
       setAnchor(newAnchor);
+    //   if (newAnchor === 'left') {
+    //     navigate('/updateExpense'); // Redirect to 'update2' if the drawer is opened from the left
+    // } else if (newAnchor === 'right') {
+    //   navigate('/updateRevenue'); // Redirect to 'update1' if the drawer is opened from the right
+    // }
     };
   
     const DrawerList = (
@@ -28,7 +35,8 @@ const Navigation = () => {
         <List >
           {['Update'].map((text, index) => (
             <ListItem key={text} disablePadding>
-              <ListItemButton component={Link} to="/update">
+              
+              <ListItemButton component={Link} to="/updateExpense">
                 <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                 </ListItemIcon>
