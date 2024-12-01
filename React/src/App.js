@@ -1,5 +1,8 @@
 import Navigation from './components/Navigation';
 import LoginNewUser from './components/Login-newUser';
+import UpdateExpense from './components/UpdateExpense';
+import LoginUser from './components/Login-user'
+import UpdateRevenue from './components/UpdateRevenue';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Tracking from './components/Tracking';
@@ -11,8 +14,8 @@ function App() {
     <Router>
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/loginnewuser" element={<LoginNewUser />} />
       <Route path="/loginuser" element={<LoginUser />} />
+      <Route path="/loginnewuser" element={<LoginNewUser />} />
       <Route path="/navigation" element={<Navigation />} />
       <Route path="/updateExpense" element={<UpdateExpense />} />
       <Route path="/updateRevenue" element={<UpdateRevenue />} />
