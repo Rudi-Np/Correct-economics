@@ -15,7 +15,7 @@ const Home = () => {
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
             <div>
                 <h1 style={{ textAlign: 'center', color: 'blue', fontFamily: 'Cooper Black', fontSize: '160px' }}>Correct Economics</h1>
-                <Link to="/loginnewuser">
+                <Link to="/loginuser">
                 <HomeIcon />
                 </Link>
             </div>
