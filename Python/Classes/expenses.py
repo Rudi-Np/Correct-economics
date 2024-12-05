@@ -1,7 +1,22 @@
+from Account import Account
+
 class Expenses:
-    def __init__(self,type,sum,date,category) :
-        self.type=type,
+    ExpensesGlobalId=0
+    def __init__(self,sum,date,type,pymentMethod,category):
+        Expenses.ExpensesGlobalId+=1
+        self.id=Expenses.ExpensesGlobalId
+        
+
+    def AddExpenses(self,sum,date,type,pymentMethod,category):
         self.sum=sum
         self.date=date
+        self.type=type
+        self.pymentMethod=pymentMethod
         self.category=category
+        Account.globalSum-=sum
+
+
+
+        
     
+        
