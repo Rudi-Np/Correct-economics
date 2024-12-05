@@ -2,7 +2,7 @@ from account import Account
 
 class Expenses:
     ExpensesGlobalId=0
-    def __init__(self,sum,date,type,pymentMethod,category):
+    def __init__(self):
         Expenses.ExpensesGlobalId+=1
         self.id=Expenses.ExpensesGlobalId
         self.expenses = [] 
