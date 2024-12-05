@@ -4,6 +4,11 @@ class Account:
         self.globalSum=sum
 
 
+    def get_global_sum(self):
+        return self.globalSum
+    
+
+
    
 
 
