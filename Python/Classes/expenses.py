@@ -2,7 +2,7 @@ from account import Account
 
 class Expenses:
     ExpensesGlobalId=0
-    def __init__(self,sum,date,type,pymentMethod,category):
+    def __init__(self):
         Expenses.ExpensesGlobalId+=1
         self.id=Expenses.ExpensesGlobalId
         self.expenses = [] 
@@ -39,6 +39,8 @@ class Expenses:
     
     def get_expense_by_category(self,category):
         return[expense for expense in self.expenses if expense['category'] == category]
+    def get_expense_by_category(self,pymentMethod):
+        return[expense for expense in self.expenses if expense['pymentMethod'] == pymentMethod]
     
 
 
