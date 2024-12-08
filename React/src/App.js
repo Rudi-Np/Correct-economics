@@ -8,12 +8,15 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Tracking from './components/Tracking';
 import Home from './components/home';
 import Remark  from './components/Remark';
+import  Connect from './server/Connect'
+
 
 function App() {
   return (
     <Router>
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/Connect" element={<Connect />} />
       <Route path="/loginuser" element={<LoginUser />} />
       <Route path="/loginnewuser" element={<LoginNewUser />} />
       <Route path="/navigation" element={<Navigation />} />
