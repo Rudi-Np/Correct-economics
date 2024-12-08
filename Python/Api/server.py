@@ -3,7 +3,11 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Correct-economics.db'  # Example URI
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://EMP03/Correct-ecconomics?driver=ODBC+Driver+17+for+SQL+Server&Trusted_Connection=yes'
+
+
+
+
 db = SQLAlchemy(app)
 
 class Expenses(db.Model):
