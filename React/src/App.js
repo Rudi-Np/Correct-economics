@@ -1,6 +1,6 @@
 import Navigation from './components/Navigation';
 import LoginNewUser from './components/Login-newUser';
-import UpdateExpense from './components/UpdateExpense';
+import UpdateExpense from './components/expenses/UpdateExpense';
 import LoginUser from './components/Login-user'
 import UpdateRevenue from './components/UpdateRevenue';
 import './App.css';
