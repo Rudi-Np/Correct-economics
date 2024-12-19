@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+t addfrom flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_cors import CORS
@@ -29,10 +29,21 @@ class Revenues(db.Model):
     amount = db.Column(db.Float, nullable=False)
     category = db.Column(db.String(255), nullable=True)
     
+class Users(db.Model):
+    __tablename__ = 'users'
+    id = db.Column(db.Integer, primary_key=True)  # Add an ID column as the primary key
+    name = db.Column(db.String, nullable=False)
+    phone = db.Column(db.String, nullable=False)
+    email = db.Column(db.String, nullable=False)
+    password = db.Column(db.String, nullable=False)  # Keep password as a regular column
+
+
+
+
 
 @app.route('/')
 def index():
-    return "Welcome to the API. Use /api/expenses or /api/revenues."
+    return "Welcome to the API. Use /api/expenses or /api/revenues or /api/users."
 
 
 
@@ -83,6 +94,35 @@ def get_revenues():
     return jsonify([{'id': revenue.id, 'amount': revenue.amount, 'type': revenue.type, 
                      'date': revenue.date.strftime('%Y-%m-%d'), 'category': revenue.category} 
                      for revenue in revenues])
+
+
+
+@app.route('/api/users', methods=['POST'])
+def add_user():
+    try:
+        data = request.get_json()
+        new_user = Users(
+        name=data['name'],
+        phone=data['phone'],
+        email=data['email'],
+        password=data['password']
+)
+
+        
+        db.session.add(new_user)
+        db.session.commit()
+        return jsonify({'message': 'user added successfully!'}), 201
+    except Exception as e:
+        return jsonify({'error': str(e)}), 400  # Return error message
+
+
+@app.route('/api/users', methods=['GET'])
+def get_users():
+    users = Users.query.all()
+    return jsonify([{'name': user.name, 'phone': user.phone, 
+                      'email': user.email, 'password': user.password,
+                     } for user in users])
+
 
 if __name__ == '__main__':
     with app.app_context():  # Add application context
