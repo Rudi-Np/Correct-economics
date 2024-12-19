@@ -14,7 +14,7 @@ const LoginUser = () => {
    
   
       const handleCreatAccountClick = () => {
-        navigate('/loginnewuser');
+        navigate('/createuser');
       };
       const handleLoginClick = () => {
         navigate('/navigation');

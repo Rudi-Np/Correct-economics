@@ -3,12 +3,11 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_cors import CORS
 
+
 app = Flask(__name__)
+CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000", "allow_headers": ["Content-Type"]}})
 
-# Configure CORS to allow requests from localhost:3000
-CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://EMP03/Correct-ecconomics?driver=ODBC+Driver+17+for+SQL+Server&Trusted_Connection=yes'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://DESKTOP-1EE5QAV/Correct-economics?driver=ODBC+Driver+17+for+SQL+Server'
 
 db = SQLAlchemy(app)
 
@@ -125,6 +124,6 @@ def get_users():
 
 
 if __name__ == '__main__':
-    with app.app_context():  # Add application context
+    with app.app_context():
         db.create_all()  # Create tables
     app.run(debug=True)

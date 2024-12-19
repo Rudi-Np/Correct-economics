@@ -20,18 +20,13 @@ const UpdateExpense = () => {
   const {register,handleSubmit}=useForm()
 
 
-
-
   const handleSaveClick = async (e) => {
     await dis(addExpense(e))
 
-    
-       
 };
+
     return(
         <div>
-           
-                
             <Box
                 component="form"
                 onSubmit={handleSubmit(handleSaveClick)}
