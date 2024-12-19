@@ -21,8 +21,8 @@ export const expenseSlice = createSlice({
     // You may want to adjust this reducer based on how you want to store the expense data
     setExpense: (state, action) => {
         state.type = action.payload.type;
-        state.amount = action.payload.amount;
         state.date = action.payload.date;
+        state.amount = action.payload.amount;
         state.category = action.payload.category;
         state.paymentMethod = action.payload.paymentMethod;
     },

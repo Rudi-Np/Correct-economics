@@ -12,11 +12,11 @@ class Expenses:
     def AddExpenses(self,amount,date,type,pymentMethod,category):
        expense_entry = {
             'id': self.id,
-            'amount': amount,
-            'date': date,
             'type': type,
-            'pymentMethod':pymentMethod,
-            'category':category
+            'date': date,
+            'amount': amount,
+            'category':category,
+            'pymentMethod':pymentMethod
         } 
        Account.globalSum-=amount  
        self.expenses.append(expense_entry) 

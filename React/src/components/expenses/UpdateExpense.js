@@ -10,14 +10,14 @@ import { addExpense } from './expenseSlice'
 
 
 const UpdateExpense = () => {
-  const [amount, setAmount] = useState('');
   const [type, setType] = useState('');
   const [date, setDate] = useState('');
+  const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('');
   const navigate = useNavigate();
   const dis = useDispatch()
-    const {register,handleSubmit}=useForm()
+  const {register,handleSubmit}=useForm()
 
 
 
@@ -30,10 +30,11 @@ const UpdateExpense = () => {
 };
     return(
         <div>
-            <form onSubmit={handleSubmit(handleSaveClick)}>
+           
                 
             <Box
                 component="form"
+                onSubmit={handleSubmit(handleSaveClick)}
                 sx={{ 
                     display: 'flex',
                     marginTop:'150px',
@@ -45,53 +46,52 @@ const UpdateExpense = () => {
                 autoComplete="off"
             >
                 <TextField 
-                    id="outlined-basic" 
-                    label="Expense type" 
-                    variant="outlined" 
-                    {...register("Expense type", { required: true })}
-                    value={type} 
-                    onChange={(e) => setType(e.target.value)} 
+    id="outlined-basic" 
+    label="Expense type" 
+    variant="outlined" 
+    {...register("type", { required: true })} // Change here
+    value={type} 
+    onChange={(e) => setType(e.target.value)} 
+/>
+<TextField 
+    id="outlined-basic" 
+    label="Date" 
+    variant="outlined" 
+    value={date} 
+    {...register("date", { required: true })} // Change here
+    onChange={(e) => setDate(e.target.value)} 
+/>
+<TextField 
+    id="outlined-basic" 
+    label="Amount" 
+    variant="outlined" 
+    value={amount} 
+    {...register("amount", { required: true })} // Change here
+    onChange={(e) => setAmount(e.target.value)} 
+/>
+<TextField 
+    id="outlined-basic" 
+    label="Category" 
+    variant="outlined"
+    {...register("category", { required: true })} 
+    value={category} 
+    onChange={(e) => setCategory(e.target.value)} 
+/>
+<TextField 
+    id="outlined-basic" 
+    label="Payment method" 
+    variant="outlined" 
+    {...register("paymentMethod", { required: true })} // Change here
+    value={paymentMethod} 
+    onChange={(e) => setPaymentMethod(e.target.value)} 
+/>
 
-                />
-                <TextField 
-                    id="outlined-basic" 
-                    label="Date" 
-                    variant="outlined" 
-                    value={date} 
-                    {...register("Date", { required: true })}
-
-                    onChange={(e) => setDate(e.target.value)} 
-                />
-                <TextField 
-                    id="outlined-basic" 
-                    label="Amount" 
-                    variant="outlined" 
-                    value={amount} 
-                    {...register("Amount", { required: true })}
-                    onChange={(e) => setAmount(e.target.value)} 
-                />
-                <TextField 
-                    id="outlined-basic" 
-                    label="category" 
-                    variant="outlined"
-                    {...register("category", { required: true })} 
-                    value={category} 
-                    onChange={(e) => setCategory(e.target.value)} 
-                />
-                <TextField 
-                    id="outlined-basic" 
-                    label="Payment method" 
-                    variant="outlined" 
-                    {...register("Payment method", { required: true })}
-                    value={paymentMethod} 
-                    onChange={(e) => setPaymentMethod(e.target.value)} 
-                />
                 <Stack direction="row" spacing={1} sx={{ justifyContent: 'center' }}>
                     <Button type="submit" variant="outlined">Save</Button> {/* הסר את onClick */}
               </Stack>
             </Box> 
             
-            </form>
+       
             <h1 style={{ textAlign: 'center', color: 'blue', fontFamily: 'Cooper Black', fontSize: '130px' }}>Update</h1>
         </div>
     );

@@ -1,65 +1,77 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from flask_cors import CORS
 
 app = Flask(__name__)
+
+# Configure CORS to allow requests from localhost:3000
+CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://EMP03/Correct-ecconomics?driver=ODBC+Driver+17+for+SQL+Server&Trusted_Connection=yes'
-
-
-
 
 db = SQLAlchemy(app)
 
 class Expenses(db.Model):
     __tablename__ = 'expenses'
     id = db.Column(db.Integer, primary_key=True)
-    amount = db.Column(db.Float, nullable=False)
     type = db.Column(db.String(255), nullable=True)
     date = db.Column(db.Date, nullable=False)
+    amount = db.Column(db.Float, nullable=False)
     category = db.Column(db.String(255), nullable=True)
     paymentMethod = db.Column(db.String(255), nullable=True)
 
 class Revenues(db.Model):
     __tablename__ = 'revenues'
     id = db.Column(db.Integer, primary_key=True)
-    amount = db.Column(db.Float, nullable=False)
     type = db.Column(db.String(255), nullable=True)
     date = db.Column(db.Date, nullable=False)
+    amount = db.Column(db.Float, nullable=False)
     category = db.Column(db.String(255), nullable=True)
+    
 
 @app.route('/')
 def index():
     return "Welcome to the API. Use /api/expenses or /api/revenues."
 
+
+
 @app.route('/api/expenses', methods=['POST'])
 def add_expense():
-    data = request.get_json()
-    new_expense = Expenses(
-        amount=data['amount'],
+    try:
+        data = request.get_json()
+        new_expense = Expenses(
         type=data['type'],
         date=datetime.strptime(data['date'], '%Y-%m-%d').date(),
+        amount=data['amount'],
         category=data['category'],
         paymentMethod=data['paymentMethod']
-    )
-    db.session.add(new_expense)
-    db.session.commit()
-    return jsonify({'message': 'Expense added successfully!'}), 201
+)
+
+        
+        db.session.add(new_expense)
+        db.session.commit()
+        return jsonify({'message': 'Expense added successfully!'}), 201
+    except Exception as e:
+        return jsonify({'error': str(e)}), 400  # Return error message
+
 
 @app.route('/api/expenses', methods=['GET'])
 def get_expenses():
     expenses = Expenses.query.all()
-    return jsonify([{'id': expense.id, 'amount': expense.amount, 'type': expense.type, 
-                     'date': expense.date.strftime('%Y-%m-%d'), 'category': expense.category,
+    return jsonify([{'id': expense.id, 'type': expense.type, 
+                     'date': expense.date.strftime('%Y-%m-%d'), 'amount': expense.amount, 'category': expense.category,
                      'paymentMethod': expense.paymentMethod} for expense in expenses])
 
 @app.route('/api/revenues', methods=['POST'])
 def add_revenue():
     data = request.get_json()
     new_revenue = Revenues(
-        amount=data['amount'],
         type=data['type'],
         date=datetime.strptime(data['date'], '%Y-%m-%d').date(),
-        category=data['category']
+        amount=data['amount'],
+        category=data['category'],
+
     )
     db.session.add(new_revenue)
     db.session.commit()
