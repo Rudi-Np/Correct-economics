@@ -1,7 +1,7 @@
 import Navigation from './components/Navigation';
-import LoginNewUser from './components/Login-newUser';
+import CreateUser from './components/user/CreateUser';
 import UpdateExpense from './components/expenses/UpdateExpense';
-import LoginUser from './components/Login-user'
+import LoginUser from './components/user/Login-user'
 import UpdateRevenue from './components/UpdateRevenue';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -18,7 +18,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/Connect" element={<Connect />} />
       <Route path="/loginuser" element={<LoginUser />} />
-      <Route path="/loginnewuser" element={<LoginNewUser />} />
+      <Route path="/createuser" element={<CreateUser />} />
       <Route path="/navigation" element={<Navigation />} />
       <Route path="/updateExpense" element={<UpdateExpense />} />
       <Route path="/updateRevenue" element={<UpdateRevenue />} />
