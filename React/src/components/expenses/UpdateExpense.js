@@ -28,12 +28,14 @@ const UpdateExpense = () => {
     
        
 };
+
     return(
         <div>
-            <form onSubmit={handleSubmit(handleSaveClick)}>
                 
             <Box
-                component="form"
+            component="form"
+            onSubmit={handleSubmit(handleSaveClick)}
+               
                 sx={{ 
                     display: 'flex',
                     marginTop:'150px',
@@ -48,7 +50,7 @@ const UpdateExpense = () => {
                     id="outlined-basic" 
                     label="Expense type" 
                     variant="outlined" 
-                    {...register("Expense type", { required: true })}
+                    {...register("type", { required: true })}
                     value={type} 
                     onChange={(e) => setType(e.target.value)} 
 
@@ -58,7 +60,7 @@ const UpdateExpense = () => {
                     label="Date" 
                     variant="outlined" 
                     value={date} 
-                    {...register("Date", { required: true })}
+                    {...register("date", { required: true })}
 
                     onChange={(e) => setDate(e.target.value)} 
                 />
@@ -67,7 +69,7 @@ const UpdateExpense = () => {
                     label="Amount" 
                     variant="outlined" 
                     value={amount} 
-                    {...register("Amount", { required: true })}
+                    {...register("amount", { required: true })}
                     onChange={(e) => setAmount(e.target.value)} 
                 />
                 <TextField 
@@ -82,7 +84,7 @@ const UpdateExpense = () => {
                     id="outlined-basic" 
                     label="Payment method" 
                     variant="outlined" 
-                    {...register("Payment method", { required: true })}
+                    {...register("paymentMethod", { required: true })}
                     value={paymentMethod} 
                     onChange={(e) => setPaymentMethod(e.target.value)} 
                 />
@@ -91,7 +93,6 @@ const UpdateExpense = () => {
               </Stack>
             </Box> 
             
-            </form>
             <h1 style={{ textAlign: 'center', color: 'blue', fontFamily: 'Cooper Black', fontSize: '130px' }}>Update</h1>
         </div>
     );

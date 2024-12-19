@@ -1,21 +1,21 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from flask_cors import CORS
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://EMP03/Correct-ecconomics?driver=ODBC+Driver+17+for+SQL+Server&Trusted_Connection=yes'
+CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000", "allow_headers": ["Content-Type"]}})
 
-
-
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://DESKTOP-1EE5QAV/Correct-economics?driver=ODBC+Driver+17+for+SQL+Server'
 
 db = SQLAlchemy(app)
 
 class Expenses(db.Model):
     __tablename__ = 'expenses'
     id = db.Column(db.Integer, primary_key=True)
-    amount = db.Column(db.Float, nullable=False)
     type = db.Column(db.String(255), nullable=True)
     date = db.Column(db.Date, nullable=False)
+    amount = db.Column(db.Float, nullable=False)
     category = db.Column(db.String(255), nullable=True)
     paymentMethod = db.Column(db.String(255), nullable=True)
 
@@ -73,6 +73,6 @@ def get_revenues():
                      for revenue in revenues])
 
 if __name__ == '__main__':
-    with app.app_context():  # Add application context
+    with app.app_context():
         db.create_all()  # Create tables
     app.run(debug=True)
