@@ -9,7 +9,8 @@ import Tracking from './components/Tracking';
 import Home from './components/home';
 import Remark  from './components/Remark';
 import  Connect from './server/Connect'
-
+import Welcome from './components/welcome';
+import DeleteUser from './components/user/deleteUser';
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
       <Route path="/updateRevenue" element={<UpdateRevenue />} />
       <Route path='/remarks' element={<Remark/>}/>
       <Route path="/tracking" element={<Tracking />} />
+      <Route path="/welcome" element={<Welcome />} />
+      <Route path="/deleteuser" element={<DeleteUser />} />
     </Routes>
   </Router>
   );

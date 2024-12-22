@@ -22,6 +22,7 @@ const UpdateExpense = () => {
 
   const handleSaveClick = async (e) => {
     await dis(addExpense(e))
+    navigate('/deleteuser')
 
 };
 

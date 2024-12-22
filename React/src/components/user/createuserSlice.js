@@ -1,10 +1,17 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { adduser } from './createuserApi';
+import { adduser, deleteuser} from './createuserApi';
 
 export const addUser = createAsyncThunk("addUser", async (user, thunkAPI) => {
     const response = await adduser(user);
     return response;  
 });
+
+export const deleteUser = createAsyncThunk("deleteUser", async (userId, thunkAPI) => {
+  console.log({userId});
+  const response = await deleteuser(userId);
+  return response;  
+});
+
 
 export const userSlice = createSlice({
   name: 'user',
