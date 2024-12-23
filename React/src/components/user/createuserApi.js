@@ -13,3 +13,10 @@ export const deleteuser = async (userId) => {
     const response = await axios.delete('http://127.0.0.1:5000/api/users',userId);
     return response.data;
 }
+
+export const finduser = async (user) => { // Accept user object
+    console.log({user});
+    const response = await axios.post('http://127.0.0.1:5000/api/findUser', user); // Corrected URL and payload
+    return response.data;
+}
+
