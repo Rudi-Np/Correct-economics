@@ -122,6 +122,15 @@ def get_users():
                       'email': user.email, 'password': user.password,
                      } for user in users])
 
+@app.route('/api/users/<int:user_id>', methods=['DELETE'])
+def delete_user(user_id):
+    user = Users.query.get(user_id)  # Find the user by ID
+    if user:
+        db.session.delete(user)  # Delete the user
+        db.session.commit()  # Commit the transaction
+        return jsonify({"message": "User deleted successfully"}), 200
+    else:
+        return jsonify({"error": "User not found"}), 404  # Return an error if user not found
 
 if __name__ == '__main__':
     with app.app_context():
